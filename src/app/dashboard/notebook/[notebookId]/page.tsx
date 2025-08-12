@@ -1,9 +1,9 @@
 import { PageWrapper } from "@/components/page-wrapper";
 import { getNotebookById } from "@/server/notebooks";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { Plus } from "lucide-react";
+import NoteCard from "@/components/note-card";
 
 type Params = Promise<{
   notebookId: string;
@@ -56,26 +56,7 @@ export default async function NotebookPage({ params }: { params: Params }) {
         {notebook.notes && notebook.notes.length > 0 ? (
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {notebook.notes.map((note) => (
-              <Card key={note.id} className="hover:shadow-md transition-shadow">
-                <CardHeader>
-                  <CardTitle className="text-lg">{note.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground line-clamp-3">
-                    {note.content && typeof note.content === 'string' 
-                      ? note.content.replace(/<[^>]*>/g, '').substring(0, 150) + '...'
-                      : 'No content'
-                    }
-                  </p>
-                  <div className="mt-4">
-                    <Link href={`/dashboard/notebook/${notebookId}/note/${note.id}`}>
-                      <Button variant="outline" size="sm">
-                        Open Note
-                      </Button>
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
+              <NoteCard key={note.id} note={note} />
             ))}
           </div>
         ) : (

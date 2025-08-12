@@ -58,7 +58,8 @@ const RichTextEditor = ({ content, noteId, onChange, placeholder }: RichTextEdit
       if (onChange) {
         onChange(content.content || []);
       } else if (noteId) {
-        updateNote(noteId, { content });
+        console.log("Saving note content:", content.content);
+        updateNote(noteId, { content: content.content || [] });
       }
     },
     content: content ? {

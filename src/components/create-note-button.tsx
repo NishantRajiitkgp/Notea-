@@ -52,7 +52,7 @@ export const CreateNoteButton = ({ notebookId }: { notebookId: string }) => {
 
       const response = await createNote({
         title: values.name,
-        content: {},
+        content: [],
         notebookId,
       });
 

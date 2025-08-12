@@ -17,9 +17,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NoteForge - Your Dev Note-Taking App",
+  title: "Notea - notes + idea",
   description:
-    "NoteForge is a digital notebook that allows you to take notes, create notebooks, and more.",
+    "Notea is a digital notebook that allows you to take notes, create notebooks, and more.",
 };
 
 export default function RootLayout({
@@ -31,6 +31,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning
       >
         <NuqsAdapter>
           <ThemeProvider

@@ -37,6 +37,10 @@ export default function NoteCard({ note }: NotebookCardProps) {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
+  // Debug logging
+  console.log("NoteCard received note:", note);
+  console.log("Note content:", note.content);
+
   const handleDelete = async () => {
     try {
       setIsDeleting(true);
@@ -55,14 +59,39 @@ export default function NoteCard({ note }: NotebookCardProps) {
   };
 
   return (
-    <Card>
+    <Card className="hover:shadow-md transition-shadow">
       <CardHeader>
         <CardTitle>{note.title}</CardTitle>
       </CardHeader>
-      <CardContent></CardContent>
+      <CardContent>
+        <p className="text-sm text-muted-foreground line-clamp-3">
+          {(() => {
+            if (!note.content || !Array.isArray(note.content) || note.content.length === 0) {
+              return 'No content';
+            }
+            
+            const extractText = (content: any[]): string => {
+              return content
+                .map((block: any) => {
+                  if (block.type === 'text') {
+                    return block.text || '';
+                  }
+                  if (block.content && Array.isArray(block.content)) {
+                    return extractText(block.content);
+                  }
+                  return '';
+                })
+                .join(' ');
+            };
+            
+            const text = extractText(note.content);
+            return text.length > 0 ? text.substring(0, 150) + (text.length > 150 ? '...' : '') : 'No content';
+          })()}
+        </p>
+      </CardContent>
       <CardFooter className="flex justify-end gap-2">
         <Link href={`/dashboard/notebook/${note.notebookId}/note/${note.id}`}>
-          <Button variant="outline">View</Button>
+          <Button variant="outline">Open Note</Button>
         </Link>
 
         <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
