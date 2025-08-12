@@ -40,7 +40,7 @@ export default function NewNoteForm({ notebookId }: NewNoteFormProps) {
       } else {
         toast.error(response.message || "Failed to create note");
       }
-    } catch (error) {
+    } catch {
       toast.error("Failed to create note");
     } finally {
       setIsCreating(false);

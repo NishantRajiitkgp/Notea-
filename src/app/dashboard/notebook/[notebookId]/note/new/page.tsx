@@ -1,5 +1,4 @@
 import { PageWrapper } from "@/components/page-wrapper";
-import RichTextEditor from "@/components/rich-text-editor";
 import { getNotebookById } from "@/server/notebooks";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -25,7 +24,7 @@ export default async function NewNotePage({ params }: { params: Params }) {
         <div className="flex flex-col items-center justify-center min-h-[400px]">
           <h1 className="text-2xl font-bold mb-4">Notebook not found</h1>
           <p className="text-muted-foreground mb-4">
-            The notebook you're looking for doesn't exist.
+            The notebook you&apos;re looking for doesn&apos;t exist.
           </p>
           <Button asChild>
             <a href="/dashboard">Back to Dashboard</a>
@@ -47,7 +46,7 @@ export default async function NewNotePage({ params }: { params: Params }) {
         <div>
           <h1 className="text-3xl font-bold">Create New Note</h1>
           <p className="text-muted-foreground">
-            Add a new note to "{notebook.name}"
+            Add a new note to &quot;{notebook.name}&quot;
           </p>
         </div>
 

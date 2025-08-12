@@ -25,7 +25,7 @@ export default async function NotebookPage({ params }: { params: Params }) {
         <div className="flex flex-col items-center justify-center min-h-[400px]">
           <h1 className="text-2xl font-bold mb-4">Notebook not found</h1>
           <p className="text-muted-foreground mb-4">
-            The notebook you're looking for doesn't exist.
+            The notebook you&apos;re looking for doesn&apos;t exist.
           </p>
           <Link href="/dashboard">
             <Button>Back to Dashboard</Button>

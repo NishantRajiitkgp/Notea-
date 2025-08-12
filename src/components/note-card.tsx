@@ -26,6 +26,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { deleteNote } from "@/server/notes";
+import { JSONContent } from "@tiptap/react";
 
 interface NotebookCardProps {
   note: Note;
@@ -70,11 +71,11 @@ export default function NoteCard({ note }: NotebookCardProps) {
               return 'No content';
             }
             
-            const extractText = (content: any[]): string => {
+            const extractText = (content: JSONContent[]): string => {
               return content
-                .map((block: any) => {
+                .map((block: JSONContent) => {
                   if (block.type === 'text') {
-                    return block.text || '';
+                    return (block as { text?: string }).text || '';
                   }
                   if (block.content && Array.isArray(block.content)) {
                     return extractText(block.content);
