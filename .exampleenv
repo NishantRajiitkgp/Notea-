@@ -1,0 +1,11 @@
+NEXT_PUBLIC_BASE_URL=http://localhost:X000
+
+BETTER_AUTH_SECRET=
+BETTER_AUTH_URL=http://localhost:X000 #Base URL of your app
+
+DATABASE_URL='postgresql://neondb_owner:npg_somethingsomething'
+
+RESEND_API_KEY=
+
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=

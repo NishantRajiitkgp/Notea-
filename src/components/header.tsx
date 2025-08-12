@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button'
 import React from 'react'
 import { cn } from '@/lib/utils'
 import { useScroll } from 'motion/react'
+import Image from 'next/image'
+import { ModeToggle } from './mode-toggle'
 
 const menuItems = [
     { name: 'Features', href: '#link' },
@@ -31,15 +33,18 @@ export const HeroHeader = () => {
         <header>
             <nav
                 data-state={menuState && 'active'}
-                className={cn('fixed z-20 w-full border-b transition-colors duration-150', scrolled && 'bg-background/50 backdrop-blur-3xl')}>
+                className={cn('fixed z-20 w-full border-b border-white/10 bg-background/30 backdrop-blur-lg shadow-md shadow-black/5 transition-colors duration-150',
+    scrolled && 'bg-background/40 backdrop-blur-xl')}>
                 <div className="mx-auto max-w-5xl px-6 transition-all duration-300">
-                    <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
+                    <div className="relative flex flex-wrap items-center justify-between gap-6 py-1 lg:gap-0 lg:py-1">
                         <div className="flex w-full items-center justify-between gap-12 lg:w-auto">
                             <Link
                                 href="/"
                                 aria-label="home"
                                 className="flex items-center space-x-2">
-                                <Logo />
+                                {/* <Logo /> */}
+                                <Image src="/logo.png" alt="Notea" width={60} height={60} />
+                                <h1 className='text-2xl font-semibold'>Notea</h1>
                             </Link>
 
                             <button
@@ -80,18 +85,19 @@ export const HeroHeader = () => {
                                 </ul>
                             </div>
                             <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
+                                <ModeToggle />
                                 <Button
                                     asChild
                                     variant="outline"
                                     size="sm">
-                                    <Link href="#">
+                                    <Link href="/login">
                                         <span>Login</span>
                                     </Link>
                                 </Button>
                                 <Button
                                     asChild
                                     size="sm">
-                                    <Link href="#">
+                                    <Link href="/signup">
                                         <span>Sign Up</span>
                                     </Link>
                                 </Button>
