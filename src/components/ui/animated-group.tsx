@@ -23,8 +23,6 @@ export type AnimatedGroupProps = {
     item?: Variants;
   };
   preset?: PresetType;
-  as?: string;
-  asChild?: string;
 };
 
 const defaultContainerVariants: Variants = {
@@ -105,8 +103,6 @@ function AnimatedGroup({
   className,
   variants,
   preset,
-  as = 'div',
-  asChild = 'div',
 }: AnimatedGroupProps) {
   const selectedVariants = {
     item: addDefaultVariants(preset ? presetVariants[preset] : {}),
@@ -115,52 +111,19 @@ function AnimatedGroup({
   const containerVariants = variants?.container || selectedVariants.container;
   const itemVariants = variants?.item || selectedVariants.item;
 
-  // Create motion components safely
-  const MotionContainer = React.useMemo(() => {
-    if (as === 'div') return motion.div;
-    if (as === 'span') return motion.span;
-    if (as === 'section') return motion.section;
-    if (as === 'article') return motion.article;
-    if (as === 'header') return motion.header;
-    if (as === 'footer') return motion.footer;
-    if (as === 'nav') return motion.nav;
-    if (as === 'main') return motion.main;
-    if (as === 'aside') return motion.aside;
-    if (as === 'ul') return motion.ul;
-    if (as === 'ol') return motion.ol;
-    if (as === 'li') return motion.li;
-    return motion.div;
-  }, [as]);
-
-  const MotionItem = React.useMemo(() => {
-    if (asChild === 'div') return motion.div;
-    if (asChild === 'span') return motion.span;
-    if (asChild === 'section') return motion.section;
-    if (asChild === 'article') return motion.article;
-    if (asChild === 'header') return motion.header;
-    if (asChild === 'footer') return motion.footer;
-    if (asChild === 'nav') return motion.nav;
-    if (asChild === 'main') return motion.main;
-    if (asChild === 'aside') return motion.aside;
-    if (asChild === 'ul') return motion.ul;
-    if (asChild === 'ol') return motion.ol;
-    if (asChild === 'li') return motion.li;
-    return motion.div;
-  }, [asChild]);
-
   return (
-    <MotionContainer
+    <motion.div
       initial='hidden'
       animate='visible'
       variants={containerVariants}
       className={className}
     >
       {React.Children.map(children, (child, index) => (
-        <MotionItem key={index} variants={itemVariants}>
+        <motion.div key={index} variants={itemVariants}>
           {child}
-        </MotionItem>
+        </motion.div>
       ))}
-    </MotionContainer>
+    </motion.div>
   );
 }
 
